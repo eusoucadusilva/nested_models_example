@@ -1,0 +1,18 @@
+<h2>Products</h2>
+
+<table>
+   <th>name</th>   
+   <th>category</th>   
+
+   <% @products.each do |product| %>
+      <tr>
+         <td><%= product.name %></td>
+         <td><%= product.category && product.category.description %></td>
+      </tr>
+   <% end %>
+
+</table>
+
+<p>
+   <%= link_to "New product", new_product_path %>
+</p>

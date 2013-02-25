@@ -1,0 +1,35 @@
+<%= form_for @product do |product_form| %>
+
+<div class="error-messages">
+   <% if @product.errors.any? %>
+
+      <ul>
+         <% @product.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+         <% end %>
+      </ul> 
+
+   <% end %>
+</div>
+
+   <%= product_form.fields_for :category do |category_fields| %>
+
+      <p>
+         <%= product_form.label :name %>
+         <%= product_form.text_field :name %>
+      </p>
+
+      <p>
+         <%= category_fields.label "create category" %>
+         <%= category_fields.text_field :description %>    
+
+         <%= product_form.collection_select :category_id, Category.order(:description), :id, :description, :prompt => "or select here" %>
+      </p>
+
+   <% end %>
+      
+   <p>
+      <%= product_form.submit %>
+   </p>
+
+<% end %>   
